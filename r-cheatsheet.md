@@ -12,4 +12,13 @@ Packages are used to extend R as with any other library mechanism
 * `library(slidify)` to load a package (need to load before using)
 * `search()` to list all of the functions now available to you
 
+## Simple commands
+* `data <- read.csv("foo.csv")` to read a CSV file into a data frame
+* `attributes(data)' to see the data frame attributes
+* `data$foo` to see the column foo as a list .. same as data[[1]] where foo is the first
+* `data[1]` to create a new data frame with just column 1 also `data[1:3]` to create a data frame with first three columns
+* `data$foo[20]` to get the 20th element in the foo column
+* `data[1:2, ]` to get rows 1 to 2 listed
+* `data[, 1]` to get column 1 listed
+* thus `data[,1][47]` is then the same as `data$foo[47]`
 
