@@ -11,6 +11,8 @@ Packages are used to extend R as with any other library mechanism
 * bioconductor is another source but you need to `source("http://...")` then `biocLite()` then `biocLite(c("pkg", "pkg"))`
 * `library(slidify)` to load a package (need to load before using)
 * `search()` to list all of the functions now available to you
+* `getwd()` to get the working directory
+* `setwd()` to change the working directory
 
 ## Simple Data Frames
 * `data <- read.csv("foo.csv")` to read a CSV file into a data frame
