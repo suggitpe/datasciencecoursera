@@ -1,10 +1,16 @@
-extractDataFrom <- function(directory){
-    csvFiles <- list.files(directory, full.names=TRUE)
-    dataFrameList <- lapply(csvFiles, read.csv)    
-    do.call("rbind", dataFrameList)
+createRangedDataframeFromFilesIn <- function(directory, id){
+    data <- createSingleDataFrameFromFilesIn(directory)
+    subset(data, data$ID %in% id)
 }
 
-extractSubsetDataFrom <- function(directory, id){
-    fullData <- extractDataFrom(directory)
-    subset(fullData, fullData$ID %in% id)
+createSingleDataFrameFromFilesIn <- function(directory){
+    do.call("rbind", createDataframesFromFilesIn(directory))
+}
+
+createDataframesFromFilesIn <- function(directory){
+    lapply(readFilesNamesIn(directory), read.csv)
+}
+
+readFilesNamesIn <- function(directory){
+    list.files(directory, full.names=TRUE)
 }
