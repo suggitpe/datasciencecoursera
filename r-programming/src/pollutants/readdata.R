@@ -1,16 +1,16 @@
 createRangedDataframeFromFilesIn <- function(directory, id){
-    data <- createSingleDataFrameFromFilesIn(directory)
+    data <- createSingleDataFrameFromFilesIn(directory, id)
     subset(data, data$ID %in% id)
 }
 
-createSingleDataFrameFromFilesIn <- function(directory){
-    do.call("rbind", createDataframesFromFilesIn(directory))
+createSingleDataFrameFromFilesIn <- function(directory, id){
+    do.call("rbind", createDataframesFromFilesIn(directory, id))
 }
 
-createDataframesFromFilesIn <- function(directory){
-    lapply(readFilesNamesIn(directory), read.csv)
+createDataframesFromFilesIn <- function(directory, id){
+    lapply(readFilesNamesIn(directory, id), read.csv)
 }
 
-readFilesNamesIn <- function(directory){
-    list.files(directory, full.names=TRUE)
+readFilesNamesIn <- function(directory, id){
+    paste(getwd(), "specdata", sprintf('%03d.csv', as.numeric(id)), sep="/")
 }

@@ -21,3 +21,11 @@ test_that("Complete creates reversed list of observations", {
     expect_that(nrow(completeCount), equals(6))
     expect_that(paste(completeCount$nobs, collapse='-'), equals("932-711-475-338-586-463"))
 })
+
+test_that("Complete creates list of single item ", {
+    
+    completeCount <- complete('specdata', 3)
+    
+    expect_that(nrow(completeCount), equals(1))
+    expect_that(paste(completeCount$nobs, collapse='-'), equals("243"))
+})
