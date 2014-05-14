@@ -1,4 +1,4 @@
-createRangedDataframeFromFilesIn <- function(directory, id){
+createRangedDataframeFromFilesIn <- function(directory, id=1:332){
     data <- createSingleDataFrameFromFilesIn(directory, id)
     subset(data, data$ID %in% id)
 }
