@@ -20,7 +20,7 @@ complete <- function(directory, id = 1:332){
     completeDataFrom(data, id)
 }
 
-completeDataFrom <- function(data, id){
+completeDataFrom <- function(data, id = 1:332){
     dataSummary <- tapply(complete.cases(data), data$ID, FUN=sum)
     key <- data.frame(id=names(dataSummary), data=dataSummary)
     data.frame(id=id, nobs=key$data[match(id, key$id)])
