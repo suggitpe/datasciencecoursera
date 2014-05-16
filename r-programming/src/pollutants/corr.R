@@ -13,7 +13,7 @@ corr <- function(directory, threshold=0){
     ## Return a numeric vector of correlations
     
     calculateCorrelationFor <- function(id){
-        toCorr <- subset(fullDataForRange, ID == id)
+        toCorr <- subset(fullData, ID == id)
         cor(toCorr$nitrate, toCorr$sulfate, use="complete.obs")   
     }
     
@@ -22,8 +22,8 @@ corr <- function(directory, threshold=0){
         subset(completeCases, completeCases$nobs > threshold)$id
     }
     
-    fullDataForRange <- createRangedDataframeFromFilesIn(directory)
-    idsAboveThreshold <- createListOfIdsAboveThreshold(fullDataForRange, threshold)
+    fullData <- createRangedDataframeFromFilesIn(directory)
+    idsAboveThreshold <- createListOfIdsAboveThreshold(fullData, threshold)
     print(paste("Correlating for total observations of", length(idsAboveThreshold)))
     if(length(idsAboveThreshold) > 0){
         sapply(idsAboveThreshold, calculateCorrelationFor)                
