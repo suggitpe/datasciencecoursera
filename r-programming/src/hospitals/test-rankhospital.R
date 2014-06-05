@@ -2,7 +2,7 @@ library('testthat')
 source("rankhospital.R")
 
 test_that("rankhospital can get best hospital for a state", {
-    expect_that(rankhospital("MD", "heart attack", "best"), equals("HARFORD MEMORIAL HOSPITAL"))    
+    expect_that(rankhospital("MD", "heart attack", "best"), equals("JOHNS HOPKINS HOSPITAL, THE"))    
 })
 
 test_that("rankhospital can get the worst hospital for a state", {
