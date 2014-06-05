@@ -1,4 +1,10 @@
-readAndSortDataFor<- function(state, outcome){
+retrieveValidatedSingleStateDataFor <- function(state, outcome){
+    
+    data <- readValidateAndSortDataFor(state, outcome)
+    removeAllOtherStateData(data, state)
+}
+
+readValidateAndSortDataFor <- function(state, outcome){
     
     readData <- function(){
         data <- read.csv('data/outcome-of-care-measures.csv', colClasses='character')
@@ -22,19 +28,14 @@ readAndSortDataFor<- function(state, outcome){
         }
         
         data           
-    }        
-    
-    readValidateAndSortDataFor <- function(state, outcome){
-        data <- readAndValidateDataFor(state,outcome)        
-        data[order(data[2],data[getColumnNumberFor(outcome)], data[1]),]        
     }
-    
-    removeAllOtherStateData <- function(data, stateToKeep){
-        subset(data, data$state == stateToKeep)        
-    }
-    
-    data <- readValidateAndSortDataFor(state, outcome)
-    removeAllOtherStateData(data, state)
+        
+    data <- readAndValidateDataFor(state,outcome)        
+    data[order(data[2],data[getColumnNumberFor(outcome)], data[1]),]        
+}
+
+removeAllOtherStateData <- function(data, stateToKeep){
+    subset(data, data$state == stateToKeep)        
 }
 
 getColumnNumberFor <- function(outcome){
