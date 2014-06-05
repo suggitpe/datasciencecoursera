@@ -14,7 +14,7 @@ rankall <- function(outcome, num = "best") {
 
 getHospitalForRank <- function(singleState, data, num){
     stateData <- subset(data, data$state == singleState)
-    rowNumber <- decodeNumber(num, data)
+    rowNumber <- decodeNumber(num, stateData)
     if(rowNumber > nrow(stateData)){
         NA
     }
