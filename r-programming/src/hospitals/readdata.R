@@ -14,7 +14,7 @@ readValidateAndSortDataFor <- function(outcome){
         data <- data[,c(2,7,11,17,23)]
         names(data) <- c('name', 'state', 'heart attack', 'heart failure', 'pneumonia')
         
-        data[, c(3,4,5)] <- sapply(data[, c(3,4,5)], as.numeric)
+        data[, c(3,4,5)] <- suppressWarnings(sapply(data[, c(3,4,5)], as.numeric))
         data
     }
         
