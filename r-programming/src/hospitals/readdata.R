@@ -1,10 +1,13 @@
 retrieveValidatedSingleStateDataFor <- function(state, outcome){
     
-    data <- readValidateAndSortDataFor(state, outcome)
+    data <- readValidateAndSortDataFor(outcome)
+    if(!(state %in% data[, "state"])){
+        stop("invalid state")
+    }
     removeAllOtherStateData(data, state)
 }
 
-readValidateAndSortDataFor <- function(state, outcome){
+readValidateAndSortDataFor <- function(outcome){
     
     readData <- function(){
         data <- read.csv('data/outcome-of-care-measures.csv', colClasses='character')
@@ -14,23 +17,11 @@ readValidateAndSortDataFor <- function(state, outcome){
         data[, c(3,4,5)] <- sapply(data[, c(3,4,5)], as.numeric)
         data
     }
-    
-    readAndValidateDataFor <- function(theState, theOutcome){
         
-        data <- readData()
-        
-        if(!(theOutcome %in% names(data))){
-            stop("invalid outcome")
-        }
-        
-        if(!(theState %in% data[, "state"])){
-            stop("invalid state")
-        }
-        
-        data           
+    data <- data <- readData()
+    if(!(outcome %in% names(data))){
+        stop("invalid outcome")
     }
-        
-    data <- readAndValidateDataFor(state,outcome)        
     data[order(data[2],data[getColumnNumberFor(outcome)], data[1]),]        
 }
 
